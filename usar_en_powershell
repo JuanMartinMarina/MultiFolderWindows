@@ -1,0 +1,18 @@
+## Ruta donde se crearán las carpetas
+$ruta = "C:\Users\Juan\Desktop"
+
+## Verifica si la ruta existe
+if (!(Test-Path -Path $ruta)) {
+    Write-Host "La ruta especificada no existe."
+    exit
+}
+
+# Crea 12 carpetas con subcarpetas. La iteración donde esta el "-le 12" se puede modificar a la cantidad de carpetas que se deseen crear
+for ($i = 1; $i -le 12; $i++) {
+    $carpetaPrincipal = New-Item -Path $ruta -Name ("Clase " + $i) -ItemType Directory
+    New-Item -Path $carpetaPrincipal.FullName -Name "Imagenes" -ItemType Directory
+    New-Item -Path $carpetaPrincipal.FullName -Name "Libros" -ItemType Directory
+    New-Item -Path $carpetaPrincipal.FullName -Name "Textos" -ItemType Directory
+}
+
+Write-Host "Carpetas creadas exitosamente."
